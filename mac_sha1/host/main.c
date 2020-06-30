@@ -125,5 +125,9 @@ int main(void)
 	hmac_value = op.params[0].value.a;
   fprintf(stdout, "HMAC: %d\n", hmac_value);
 
+exit:
+	TEEC_CloseSession(&sess);
+	TEEC_FinalizeContext(&ctx);
+
 	return 0;
 }
