@@ -202,7 +202,6 @@ exit:
  static TEE_Result get_hmac(uint32_t param_types, TEE_Param params[4])
 {
 	TEE_Result res = TEE_SUCCESS;
-	uint32_t HMAC_val;
 	uint8_t mac[SHA1_HASH_SIZE];
 	uint32_t mac_len = sizeof(mac);
 	int i;
