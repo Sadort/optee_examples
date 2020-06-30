@@ -3,6 +3,7 @@ export V ?= 0
 OUTPUT_DIR := $(CURDIR)/out
 
 EXAMPLE_LIST := $(subst /,,$(dir $(wildcard */Makefile)))
+#EXAMPLE_LIST := hello_world hmac
 
 .PHONY: all
 all: examples prepare-for-rootfs
