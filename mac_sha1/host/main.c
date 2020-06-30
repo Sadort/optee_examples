@@ -115,7 +115,7 @@ int main(void)
 	/* 2. Get HMAC based One Time Passwords */
 	op.paramTypes = TEEC_PARAM_TYPES(TEEC_VALUE_OUTPUT, TEEC_NONE,
 					 TEEC_NONE, TEEC_NONE);
-	res = TEEC_InvokeCommand(&sess, TA_HOTP_CMD_GET_HOTP, &op,
+	res = TEEC_InvokeCommand(&sess, TA_HMAC_CMD_GET_HMAC, &op,
 					 &err_origin);
   if (res != TEEC_SUCCESS) {
 			fprintf(stderr, "TEEC_InvokeCommand failed with code "
@@ -123,7 +123,7 @@ int main(void)
 			goto exit;
 	}
 	hmac_value = op.params[0].value.a;
-  fprintf(stdout, "HOTP: %d\n", hmac_value);
+  fprintf(stdout, "HMAC: %d\n", hmac_value);
 
 	return 0;
 }

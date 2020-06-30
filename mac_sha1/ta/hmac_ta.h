@@ -8,7 +8,7 @@
 #define __HMAC_TA_H__
 
 /*
- * This TA implements HOTP according to:
+ * This TA implements HMAC according to:
  * https://www.ietf.org/rfc/rfc4226.txt
  */
 
@@ -17,9 +17,9 @@
 		{ 0x31, 0x20, 0x4a, 0x6f, 0x63, 0x6b, 0x65, 0x42 } }
 
 /* The function ID(s) implemented in this TA */
-#define TA_HOTP_CMD_REGISTER_SHARED_KEY	0
-#define TA_HOTP_CMD_REGISTER_MESSAGE		1
-#define TA_HOTP_CMD_REGISTER_OUTPUT		2
-#define TA_HOTP_CMD_GET_HMAC		3
+#define TA_HMAC_CMD_REGISTER_SHARED_KEY	0
+#define TA_HMAC_CMD_REGISTER_MESSAGE		1
+#define TA_HMAC_CMD_REGISTER_OUTPUT		2
+#define TA_HMAC_CMD_GET_HMAC		3
 
 #endif
