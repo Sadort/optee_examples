@@ -30,12 +30,12 @@ static uint8_t K[MAX_KEY_SIZE];
 static uint32_t K_len;
 
 /* The input message. */
-static uint8_t in[MAX_MESSAGE_SIZE];
-static uint32_t in_len;
+static uint8_t input[MAX_MESSAGE_SIZE];
+static uint32_t input_len;
 
 /* The input message. */
-static uint8_t out[SHA1_HASH_SIZE];
-static uint32_t out_len;
+static uint8_t output[SHA1_HASH_SIZE];
+static uint32_t output_len;
 
 /*
  *  HMAC a block of memory to produce the authentication tag
@@ -159,14 +159,14 @@ exit:
 		return TEE_ERROR_BAD_PARAMETERS;
 	}
 
-	if (params[0].memref.size > sizeof(in))
+	if (params[0].memref.size > sizeof(input))
 		return TEE_ERROR_BAD_PARAMETERS;
 
-	memset(in, 0, sizeof(in));
-	memcpy(in, params[0].memref.buffer, params[0].memref.size);
+	memset(input, 0, sizeof(input));
+	memcpy(input, params[0].memref.buffer, params[0].memref.size);
 
-	in_len = params[0].memref.size;
-	DMSG("Got message %s (%u bytes).", in, params[0].memref.size);
+	input_len = params[0].memref.size;
+	DMSG("Got message %s (%u bytes).", input, params[0].memref.size);
 
 	return res;
 
@@ -186,14 +186,14 @@ exit:
 		return TEE_ERROR_BAD_PARAMETERS;
 	}
 
-	if (params[0].memref.size > sizeof(out))
+	if (params[0].memref.size > sizeof(output))
 		return TEE_ERROR_BAD_PARAMETERS;
 
-	memset(out, 0, sizeof(out));
-	memcpy(out, params[0].memref.buffer, params[0].memref.size);
+	memset(output, 0, sizeof(output));
+	memcpy(output, params[0].memref.buffer, params[0].memref.size);
 
-	out_len = params[0].memref.size;
-	DMSG("Got output %s (%u bytes).", out, params[0].memref.size);
+	output_len = params[0].memref.size;
+	DMSG("Got output %s (%u bytes).", output, params[0].memref.size);
 
 	return res;
 
@@ -217,10 +217,10 @@ exit:
 		return TEE_ERROR_BAD_PARAMETERS;
 	}
 
-	res = hmac_sha1(K, K_len, in, in_len, mac, &mac_len);
+	res = hmac_sha1(K, K_len, input, input_len, mac, &mac_len);
 	params[0].value.a = 0;
 
-	for (i = 0; i < out_len; i++)
+	for (i = 0; i < output_len; i++)
 	{
 		if (mac[i] != output[i]) {
 			params[0].value.a = 1;
