@@ -204,7 +204,7 @@ exit:
 	TEE_Result res = TEE_SUCCESS;
 	uint8_t mac[SHA1_HASH_SIZE];
 	uint32_t mac_len = sizeof(mac);
-	int i;
+	uint32_t i;
 
 	uint32_t exp_param_types = TEE_PARAM_TYPES(TEE_PARAM_TYPE_VALUE_OUTPUT,
 						   TEE_PARAM_TYPE_NONE,
